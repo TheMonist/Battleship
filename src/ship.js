@@ -1,25 +1,25 @@
-const Ship = () => {
-    let hit = 0;
-    let isSunk = false;
-    let length = 0;
+//Ship Factory Function
+const Ship = (length) => {
+    let hits = 0;
+    let sunk = false;
 
-    /* 
     const hit = () => {
-        return hit++;
+        return hits++;
     }
 
-    const shipTracker = () => {
-        if (hit === length) {
-            isSunk = true;
+    //There is an error here with the boolean
+    const isSunk = () => {
+        if (hits === length) {
+            sunk = true;
         }
-        return isSunk;
-    } 
-    */
+        return sunk;
+    }
 
     return {
+        length,
         hit,
         isSunk,
-        length
+        sunk,
     }
 }
 
