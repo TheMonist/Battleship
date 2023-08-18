@@ -11,5 +11,5 @@ test('Test to see if hit function works', () => {
 });
 
 test('Test to see if sink function works', () => {
-    expect(testShip.isSunk()).toBeTruthy();
+    expect(testShip.isSunk()).toBe(true);
 });

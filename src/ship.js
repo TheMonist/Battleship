@@ -7,10 +7,9 @@ const Ship = (length) => {
         return hits++;
     }
 
-    //There is an error here with the boolean
     const isSunk = () => {
-        if (hits === length) {
-            sunk = true;
+        if (hits >= length) {
+            return sunk = true;
         }
         return sunk;
     }
@@ -19,7 +18,6 @@ const Ship = (length) => {
         length,
         hit,
         isSunk,
-        sunk,
     }
 }
 
