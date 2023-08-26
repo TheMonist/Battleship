@@ -12,12 +12,48 @@ const Gameboard = () => {
     let misses = [];
     let sunkShip = [];
     
+    //Creates Gameboard
     for (let i = 0; i < 10; i++) {
         gameboard.push(['', '', '', '', '', '', '', '', '', '']);
     }
 
+    const getGameboard = () => {
+        return gameboard;
+    }
+
+    const checkShip = (x, y, length, position) => {
+        if (position === 'vertical') {
+            for (let i = 1; i < length - 1; i++) {
+                if (x + i > 9) {
+                    return false;
+                }
+
+                if (gameboard[x + i][y] !== '') {
+                    return false
+                }
+            }
+        }
+
+        if (position === 'horizontal') {
+            for (let i = 1; i < length - 1; i++) {
+                if (y + i > 9) {
+                    return false;
+                }
+
+                if (gameboard[x][y + i] !== '') {
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+
     const receiveAttack = (Ship, x, y) => {
         //function to take attacks
+        return {
+            misses,
+            sunkShip
+           }
     }
 
     const attackTracker = () => {
@@ -30,9 +66,12 @@ const Gameboard = () => {
        if (typeof shipOnBoard === 'object') {
         //functionality 
        }
+       
     }
 
     return {
+        getGameboard,
+        checkShip,
         receiveAttack,
         attackTracker,
         sinkTracker
