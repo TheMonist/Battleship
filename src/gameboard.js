@@ -9,10 +9,11 @@ import './ship.js';
 
 const Gameboard = () => {
     let gameboard = [];
+    let ships = []
     let misses = [];
-    let sunkShip = [];
+    //let sunkShip = [];
     
-    //Creates Gameboard
+    /* Creates Gameboard
     for (let i = 0; i < 10; i++) {
         gameboard.push(['', '', '', '', '', '', '', '', '', '']);
     }
@@ -20,9 +21,17 @@ const Gameboard = () => {
     const getGameboard = () => {
         return gameboard;
     }
+    */
     
-    const placeShip = () => {
+    const placeShip = (ship, [x,y]) => {
+        ship.startCoord = [x, y];
 
+        if (ship.direction === 'horizontal') ship.endCoord = [(x + (ship.length - 1)), y]; 
+        else ship.endCoord = [x, (y - (ship.length - 1))];
+
+        ships.push(ship);
+
+        return ship.endCoord;
     }
 
     
@@ -53,14 +62,43 @@ const Gameboard = () => {
         return true;
     }
 
-    const receiveAttack = (Ship, x, y) => {
+    const receiveAttack = ([x, y]) => {
         //function to take attacks
+        let hit = false;
+
+        for (let i = 0; i < ships.length; i++) {
+            if (ships[i].direction === 'horizontal') {
+                if (y === ships[i].startCoord[1] && x >= ships[i].startCoord[0] && x <= ships[i].endCoord[0]) {
+                    ships[i].hit();
+                    hit = true; 
+
+                    ships[i].isSunk();
+                }
+            }
+
+            if (ships[i].direction == 'vertical') {
+                if (x == ships[i].startCoord[1] && y >= ships[i].startCoord[1] && y <= ships[i].endCoord[0]) {
+                    ships[i].hit();
+                    hit = true;
+
+                    ships[i].isSunk();
+                }
+            }
+
+            if (hit === false) misses.push([x,y]);
+        }
+
         return {
             misses,
-            sunkShip
+            hit
            }
     }
 
+    const allSunk = () => {
+        return ships.every(ship => ship.sunk == true);
+    }
+
+    /*
     const attackTracker = () => {
         //function to track attack; maybe make another one for missed attacks
     }
@@ -73,14 +111,16 @@ const Gameboard = () => {
        }
        
     }
+    */
     
     return {
-        getGameboard,
+        //getGameboard,
         checkShip,
         placeShip,
         receiveAttack,
-        attackTracker,
-        sinkTracker
+        allSunk
+        //attackTracker,
+        //sinkTracker
     }
 }
 
