@@ -20,7 +20,12 @@ const Gameboard = () => {
     const getGameboard = () => {
         return gameboard;
     }
+    
+    const placeShip = () => {
 
+    }
+
+    
     const checkShip = (x, y, length, position) => {
         if (position === 'vertical') {
             for (let i = 1; i < length - 1; i++) {
@@ -68,10 +73,11 @@ const Gameboard = () => {
        }
        
     }
-
+    
     return {
         getGameboard,
         checkShip,
+        placeShip,
         receiveAttack,
         attackTracker,
         sinkTracker

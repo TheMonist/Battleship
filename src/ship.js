@@ -2,6 +2,15 @@
 const Ship = (length) => {
     let hits = 0;
     let sunk = false;
+    let startCoord = null;
+    let endCoord = null;
+    let direction = 'horizontal';
+
+    const rotate = () => {
+        if (direction === 'horizontal') {
+            return direction = 'horizontal'
+        }
+    }
 
     const hit = () => {
         return hits++;
@@ -16,6 +25,9 @@ const Ship = (length) => {
 
     return {
         length,
+        startCoord,
+        endCoord,
+        rotate,
         hit,
         isSunk,
     }
