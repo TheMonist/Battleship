@@ -1,22 +1,22 @@
 //Ship Factory Function
-const Ship = (length) => {
+function Ship(length) {
     let hits = 0;
     let sunk = false;
     let startCoord = null;
     let endCoord = null;
     let direction = 'horizontal';
 
-    const rotate = () => {
+    function rotate() {
         if (direction === 'horizontal') {
             return direction = 'horizontal'
         }
     }
 
-    const hit = () => {
+    function hit() {
         return hits++;
     }
 
-    const isSunk = () => {
+    function isSunk() {
         if (hits >= length) {
             return sunk = true;
         }
