@@ -1,15 +1,15 @@
 const Ship = require('../ship');
 
-let testShip = Ship(4);
-testShip.hit();
-testShip.hit();
-testShip.hit();
-testShip.hit();
+let newShip = Ship(4);
+newShip.hit();
+newShip.hit();
+newShip.hit();
+newShip.hit();
 
-test('Test to see if hit function works', () => {
-    expect(testShip.hit()).toEqual(4);
-});
+test('Hit Ship', () => {
+    expect(newShip.hits).toBe(4)
+})
 
-test('Test to see if sink function works', () => {
-    expect(testShip.isSunk()).toBe(true);
-});
+test('Sink Ship', () => {
+    expect(newShip.isSunk()).toBe(true);
+})
