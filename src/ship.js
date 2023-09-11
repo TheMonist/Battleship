@@ -1,29 +1,17 @@
 //Ship Factory Function
-function Ship(length) {
+function Ship(positions) {
     return {
-        length: length,
-        hits: 0,
-        sunk: false,
-        startCoord: null,
-        endCoord: null,
-        direction: 'horizontal',
-
-        rotate() {
-            if (this.direction === 'horizontal') return this.direction = 'vertical';
-            return this.direction = 'horizontal'
+        positions,
+        length: positions.length,
+        hits: [],
+        hit(positions) {
+            if (!(this.hits.includes(positions)))
+            this.hits.push(position);
         },
-
-        hit() {
-            this.hits++
-        },
-
         isSunk() {
-            if (this.hits >= this.length) {
-                return this.sunk = true;
-            }
-            return this.sunk
+            return (this.hits.length === this.length);
         }
     }
 }
 
-module.exports = Ship;
+export default Ship;
