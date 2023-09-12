@@ -1,4 +1,4 @@
-import convertCoordinatesToIndex from "../utils";
+import convertCoordinatesToIndex from '../utils';
 
 test('Correctly converts 3, 2 to 32', () => {
     expect(convertCoordinatesToIndex(3, 2)).toBe(32);

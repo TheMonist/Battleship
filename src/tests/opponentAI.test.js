@@ -1,6 +1,6 @@
-import Gameboard from "../gameboard";
-import OpponentAI from "../opponentAI";
-import convertCoordinatesToIndex from "../utils";
+import Gameboard from '../gameboard';
+import OpponentAI from '../opponentAI';
+import convertCoordinatesToIndex from '../utils';
 
 let opponentAI;
 let oppositeBoard;

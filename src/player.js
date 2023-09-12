@@ -1,4 +1,4 @@
-import OpponentAI from "../opponentAI";
+import OpponentAI from './opponentAI';
 
 function Player(name, gameboard, opponentBoard) {
     let ai;

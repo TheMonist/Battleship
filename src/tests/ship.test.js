@@ -17,7 +17,7 @@ describe('Ship properties and functions', () => {
 
     test('Register Hit', () => {
         testShip.hit(12);
-        expect(testShip.hit).toEqual([12]);
+        expect(testShip.hits).toStrictEqual([12]);
     });
 
     test('Ship is not sunk when it has un-hit positions', () => {

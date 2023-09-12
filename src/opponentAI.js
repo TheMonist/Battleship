@@ -1,4 +1,4 @@
-import { getRandomIndex } from "../utils";
+import { getRandomIndex } from './utils';
 
 function OpponentAI(oppositeBoard) {
     function getLegalMoves() {
@@ -19,3 +19,5 @@ function OpponentAI(oppositeBoard) {
         getRandomLegalMove,
     }
 };
+
+export default OpponentAI;

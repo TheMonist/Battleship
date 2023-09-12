@@ -4,8 +4,8 @@ function Ship(positions) {
         positions,
         length: positions.length,
         hits: [],
-        hit(positions) {
-            if (!(this.hits.includes(positions)))
+        hit(position) {
+            if (!(this.hits.includes(position)))
             this.hits.push(position);
         },
         isSunk() {
