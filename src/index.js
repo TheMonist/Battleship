@@ -85,3 +85,128 @@ function placeShips(user) {
     user.gameboard.placeShip(userSubmarine, submarineStartCoord);
     user.gameboard.placeShip(userDestroyer, destroyerStartCoord);
 }
+
+function randomShipCoord(vessel) {
+    const name = vessel;
+
+    const possibleDirections = ['horizontal', 'vertical'];
+    const randomNumbers = [0, 1];
+
+    const randomDirectionChoice = randomNumbers[Math.floor(Math.random()*randomNumbers.length)];
+
+    const direction = possibleDirections[randomDirectionChoice];
+
+    let xCoord;
+    let yCoord;
+    let randomX;
+    let randomY;
+    let randomCoordinate;
+
+    if (direction === 'horizontal') {
+        if (vessel === 'carrier') xCoord = [0, 1, 2, 3, 4];
+        else if (vessel === 'battleship') xCoord = [0, 1, 2, 3, 4, 5];
+        else if (vessel === 'cruiser') xCoord = [0, 1, 2, 3, 4, 5, 6];
+        else if (vessel === 'submarine') xCoord = [0, 1, 2, 3, 4, 5, 6];
+        else if (vessel === 'destroyer') xCoord = [0, 1, 2, 3, 4, 5, 6, 7];
+
+        yCoord = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
+
+        randomX = xCoord[Math.floor(Math.random()*xCoord.length)];
+        randomY = yCoord[Math.floor(Math.random()*yCoord.length)];
+
+        randomCoordinate = [randomX, randomY];
+        return {randomCoordinate, direction, name};
+    }
+
+    else {
+        if (vessel == 'carrier') yCoord = [9, 8, 7, 6, 5];
+        else if (vessel === 'battleship') yCoord = [9, 8, 7, 6, 5, 4];
+        else if (vessel === 'cruiser') yCoord = [9, 8, 7, 6, 5, 4, 3];
+        else if (vessel === 'submarine') yCoord = [9, 8, 7, 6, 5, 4, 3];
+        else if (vessel === 'destroyer') yCoord = [9, 8, 7, 6, 5, 4, 3, 2];
+
+        xCoord = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
+        
+        randomX = xCoord[Math.floor(Math.random()*xCoord.length)];
+        randomY = yCoord[Math.floor(Math.random()*yCoord.length)];
+
+        randomCoordinate = [randomX, randomY];
+        return {randomCoordinate, direction, name};
+    }
+}
+
+function placeAiShips(ai) {
+    let occupiedCoords = [];
+
+    const vesselLengths = {
+        'carrier': 5,
+        'battleship': 4,
+        'cruiser': 4,
+        'submarine': 3,
+        'destroyer': 2
+    }
+
+    const carrier = randomShipCoord('carrier');
+    const battleship = randomShipCoord('battleship');
+    const cruiser = randomShipCoord('cruiser');
+    const submarine = randomShipCoord('submarine');
+    const destroyer = randomShipCoord('destroyer');
+
+    let randomVesels = ['carrier', 'battleship', 'cruiser', 'submarine', 'destroyer'];
+
+    randomVesels.forEach(vessel => {
+        for (let i = 0; i < vesselLengths[vessel.name]; i++) {
+            let newCoord;
+
+            if (vessel.direction === 'horizontal') {
+                newCoord = `${vessel.randomCoordinate[0] + i}, ${vessel.randomCoordinate[1]}`;
+            }
+            else if (vessel.direction === 'vertical') {
+                newCoord = `${vessel.randomCoordinate[0]}, ${vessel.randomCoordinate[1] - i}`;
+            }
+            occupiedCoords.push(newCoord);
+        }
+    })
+
+    if (occupiedCoords.length != new Set(occupiedCoords).size) {
+        const aiBoardBoxes = document.getElementById('aiGameBoard').querySelectorAll('.gameBoardBox');
+        aiBoardBoxes.forEach(box => box.style.backgroundColor = 'white');
+
+        return placeAiShips
+    }
+
+    const aiCarrier = Ship(5);
+    aiCarrier.direction = carrier.direction;
+    ai.gameboard.placeShip(aiCarrier, carrier.randomCoordinate);
+
+    const aiBattleship = Ship(4);
+    aiBattleship.direction = battleship.direction;
+    ai.gameboard.placeShip(aiBattleship, battleship.randomCoordinate);
+
+    const aiCruiser = Ship(3);
+    aiCruiser.direction = cruiser.direction;
+    ai.gameboard.placeShip(aiCruiser, cruiser.randomCoordinate);
+
+    const aiSubmarine = Ship(3);
+    aiSubmarine.direction = submarine.direction;
+    ai.gameboard.placeShip(aiSubmarine, submarine.randomCoordinate);
+
+    const aiDestroyer = Ship(2);
+    aiDestroyer.direction = destroyer.direction;
+    ai.gameboard.placeShip(aiDestroyer, destroyer.randomCoordinate);
+}
+
+function attack(user, e) {
+    if (user.gameboard.ships.length === 5 && user.gameboard.allSunk()) return displayWinner(2), replay();
+    if (user.enemy.gameboard.ships.length === 5 && user.enemy.gameboard.allSunk()) return displayWinner(1), replay;
+    else if (user.turn === true) attackAi(user, e);
+    else if (user.turn === false) aiAttackUser(user);
+}
+
+function attackAi(user, e) {
+    let userAttackArray = [];
+}
+
+function aiAttackUser(user) {
+    //function
+}
