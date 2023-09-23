@@ -1,5 +1,4 @@
-//Ship Factory Function
-function Ship(positions) {
+function Ship(length) {
     return {
         length: length,
         hits: 0,

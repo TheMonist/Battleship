@@ -1,4 +1,4 @@
-const Gameboard = requrie('./gameboard');
+const Gameboard = require('./gameboard');
 
 function Player(id) {
     return {

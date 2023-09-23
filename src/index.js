@@ -4,7 +4,7 @@
 import './styles.scss';
 import Ship from './ship';
 import Player from './player';
-import {gameboardGrids, eventHandler, renderAttacks, displayWinner} from '.dom';
+import {gameboardGrids, eventHandler, renderAttacks, displayWinner} from './domHandler';
 
 function game() {
     const shipsButton = document.getElementById('shipsBtn');
@@ -205,8 +205,66 @@ function attack(user, e) {
 
 function attackAi(user, e) {
     let userAttackArray = [];
+    const userAttacks = user.attacks;
+    userAttacks.forEach(att => userAttackArray.push(`${att[0]}, ${att[1]}`));
+
+    if (userAttackArray.includes(e.target.id)) return;
+
+    const splitId = e.target.id;
+    const xAttack = splitId[0];
+    const yAttack = splitId[1];
+
+    user.attack([xAttack, yAttack]);
+
+    renderAttacks(user);
+
+    attack(user, e);
 }
 
 function aiAttackUser(user) {
-    //function
+    const ai = user.enemy;
+
+    const allAiAttacks = ai.attacks;
+    const allAiMisses = ai.misses;
+
+    const aiAttackCoords = [];
+    const aiMissCoord = [];
+
+    allAiAttacks.forEach(att => aiAttackCoords.push(`${att[0]}, ${att[1]}`));
+    allAiMisses.forEach(miss => aiMissCoord.push(`${miss[0]}, ${miss[1]}`));
+
+    let hits = aiAttackCoords.filter(x => !aiMissCoord.includes(x));
+
+    let randomBox;
+
+    let aiAttackArray = [];
+    const aiAttacks = ai.attacks;
+    aiAttacks.forEach(att => aiAttackArray.push(`${att[0]}, ${att[1]}`));
+
+    const userBoxes = document.getElementById('usersGameboard').querySelectorAll('gameBoardBox');
+
+    randomBox = userBoxes[Math.floor(Math.random()*userBoxes.length)];
+
+    while (aiAttackArray.includes(randomBox.id)) {
+        randomBox = userBoxes[Math.floor(Math.random()*userBoxes.length)];
+    }
+
+    const randomBoxSplit = randomBox.id.split(',');
+    const randomUserX = Number(randomBoxSplit[0]);
+    const randomUserY = Number(randomBoxSplit[1]);
+
+    ai.attack([randomUserX, randomUserY]);
+
+    renderAttacks(ai);
+}
+
+function intelligentAi(hits,hit) {
+    //function that maybe removed
+}
+
+function replay() {
+    const replayBtn = document.getElementById('playAgain');
+    replayBtn.addEventListener('click', () => {
+        window.location.reload();
+    });
 }
