@@ -3,4 +3,55 @@ h1 {
 }
 h1:hover {
   color: blue;
+}
+
+button {
+  background-color: rgba(0, 0, 0, 0.8);
+  border: 2px solid #FFF;
+  color: #FFF;
+}
+button:hover {
+  background-color: rgba(0, 0, 0, 0.6);
+  cursor: pointer;
+}
+button:active {
+  border: 2px solid #000;
+  color: #000;
+}
+
+#shipsBtn, #rotateBtn {
+  border-radius: 0.5rem;
+}
+
+#clearPlacement, #confirmPlacement {
+  border-radius: 1rem;
+}
+
+.battleShip {
+  height: 100%;
+  width: 100%;
+}
+
+.header, .footer {
+  background-color: rgba(0, 0, 0, 0.5);
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.header {
+  height: 15vh;
+}
+.header .title {
+  font-size: x-large;
+}
+
+.gameboardsContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: baseline;
+  height: 75vh;
+  background-color: #f5f5f5;
 }/*# sourceMappingURL=styles.css.map */

@@ -6,7 +6,72 @@
     <link rel="stylesheet" href="styles.css">
     <title>Battleship</title>
 </head>
-<body>
-    <h1>Battleship</h1>
-</body>
+    <body>
+        <main class="battleship">
+            <header class="header">
+                <h1 class="title">Battleship</h1>
+            </header>
+            <section class="gameboardsContainer">
+                <div class="userBoard">
+                    <div class="userBoardMenu">
+                        <div class="boardTitle">
+                            <p>User</p>
+                        </div>
+                        <div class="shipsButton">
+                            <button id="shipsBtn">Ships</button>
+                        </div>
+                    </div>
+                    <div class="gameBoard" id="usersGameboard"></div>
+                </div>
+                <div class="aiBoard">
+                    <div class="boardTitle">
+                        <p>Enemy</p>
+                    </div>
+                    <div class="gameBoard" id="aisGameboard"></div>
+                </div>  
+                <div class="shipsContainer">
+                    <div class="offsetDiv"></div>
+                    <div class="content">
+                        <div class="rotate">
+                            <button id="rotateBtn">Rotate</button>
+                        </div>
+                        <div class="vesselContainer">
+                            <div class="vessel" id="carrier" draggable="true">
+                                <div class="vesselBox"></div>
+                                <div class="vesselBox"></div>
+                                <div class="vesselBox"></div>
+                                <div class="vesselBox"></div>
+                                <div class="vesselBox"></div>
+                            </div>
+                            <div class="vessel" id="battleship" draggable="true">
+                                <div class="vesselBox"></div>
+                                <div class="vesselBox"></div>
+                                <div class="vesselBox"></div>
+                                <div class="vesselBox"></div>
+                            </div>
+                            <div class="vessel" id="cruiser" draggable="true">
+                                <div class="vesselBox"></div>
+                                <div class="vesselBox"></div>
+                                <div class="vesselBox"></div>
+                            </div>
+                            <div class="vessel" id="submarine" draggable="true">
+                                <div class="vesselBox"></div>
+                                <div class="vesselBox"></div>
+                                <div class="vesselBox"></div>
+                            </div>
+                            <div class="vessel" id="destroyer"draggable="true">
+                                <div class="vesselBox"></div>
+                                <div class="vesselBox"></div>
+                            </div>
+                        </div>
+                        <div class="confirm-clear">
+                            <button id="clearPlacement">Clear</button>
+                            <button id="confirmPlacement">Confirm Placement</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+        <script src="main.js"></script>
+    </body>
 </html>
